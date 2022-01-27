@@ -36,5 +36,5 @@ A python project to help you solve the Wordle game.
 - 輸入猜測單字: `count`
 - 輸入此猜測的結果: `xoooo`
 
-## Step 4: 從候選字挑選單字，再次猜測
-## Step 5: 重複 Step 2 ~ Step 4
+### Step 4: 從候選字挑選單字，再次猜測
+### Step 5: 重複 Step 2 ~ Step 4
