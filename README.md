@@ -2,7 +2,8 @@
 A python project to help you solve the Wordle game.
 
 ## 使用方法
-- 只要開啟 wordle.ipynb 後，上方選擇「全部執行」就可以開始
+- 線上直接使用: [Google Colab](https://colab.research.google.com/drive/1DDgXeWPE4TtI-UYyoB-50juWZFrMUek9?usp=sharing)
+- 開啟 wordle.ipynb 後，上方「執行階段」選擇「全部執行」就可以開始
 - 若不想要破壞猜字遊戲的體驗，建議可以等到第 3 ~ 4 猜再開始使用此工具
 
 ## 使用流程
