@@ -14,7 +14,7 @@ A python project to help you solve the Wordle game.
 - 可以使用母音多、字母不重複的單字，例如 arose
 - 若想要跳過此步驟，不輸入直接按下 Enter 即可
 
-### Step 2: 輸入猜測單字
+### Step 2: 輸入猜測單字 (小寫)
 
 ### Step 3: 輸入猜測的結果
 
