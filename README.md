@@ -17,7 +17,7 @@ A python project to help you solve the Wordle game.
 
 ### Step 3: 輸入猜測的結果
 
-![demo](img/demo.png)
+<img src="img/demo.png" width=300>
 
 #### 輸入規則
 - 綠色：o
