@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:image" content="https://i.imgur.com/It5F61Q.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="80" />
+  <meta property="og:image:height" content="80" />
+  <title>Wordle Helper</title>
+  <link rel="icon" href="https://i.imgur.com/It5F61Q.png">
+  </link>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <style>
+    @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif !important;
+      background-color: lightBlue;
+      text-align: center;
+    }
+
+    .split {
+      width: 50%;
+      position: absolute;
+      overflow-x: auto;
+      top: 3%;
+    }
+
+    .right {
+      right: 0;
+      width: 40%;
+    }
+
+    .left {
+      left: 1%;
+    }
+  </style>
+  <script>
+    $(document).ready(function () {
+      $("#finish").click(function () {
+        var isValid = document.querySelector('#myform')
+        if (isValid.checkValidity()) {
+          $(this).prop("disabled", true);
+          $(this).html(
+            `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> 正在努力翻字典`
+          );
+          $("form").submit();
+        };
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <div class="split left col-md-12">
+    <form id="myform" action="" method="POST" autocomplete="off">
+      {% csrf_token %}
+
+      <fieldset class="form-group">
+        <div class="" style="text-align: left;">
+          <h4 class=""> 猜測單字 </h4>
+          <small class="text-muted" style="height: 200px">依序把單字填入 (半形逗號區隔，不用空格)</small>
+        </div>
+        {% if guess_word %}
+        <div class="form-group required" style="height: 40px;width: 100%;">
+          <input class="form-control form-control-sm" type="text" pattern="^[a-zA-Z{5},]+$"
+            placeholder="如：arose,count,until" name="guess_word" value={{ guess_word }} required />
+        </div>
+        {% else %}
+        <div class="form-group required" style="height: 40px;width: 100%;">
+          <input class="form-control form-control-sm" type="text" pattern="^[a-zA-Z{5},]+$"
+            placeholder="如：arose,count,until" name="guess_word" value="" required />
+        </div>
+        {% endif %}
+      </fieldset>
+
+      <fieldset class="form-group">
+        <div class="" style="text-align: left;">
+          <h4 class=""> 猜測結果 </h4>
+          <small class="text-muted" style="height: 200px">綠色: o / 灰色: x / 黃色: ?</small>
+        </div>
+        {% if guess_result %}
+        <div class="form-group required" style="height: 40px;width: 100%">
+          <input class="form-control form-control-sm" type="text" pattern="^[oOxX?{5},]+$"
+            placeholder="如：x?xoo,xx?x?,???xx" name="guess_result" value={{ guess_result }} required />
+        </div>
+        {% else %}
+        <div class="form-group required" style="height: 40px;width: 100%">
+          <input class="form-control form-control-sm" type="text" pattern="^[oOxX?{5},]+$"
+            placeholder="如：x?xoo,xx?x?,???xx" name="guess_result" value="" required />
+        </div>
+        {% endif %}
+      </fieldset>
+
+      <button type="submit" id="finish" class="btn btn-primary btn-sm"
+        style="text-align: center;width: 60%;">查詢候選字</button>
+    </form>
+  </div>
+</body>
+
+<body>
+  {% if word %}
+  <div class="split right col-md-12">
+
+    {% if guess_word %}
+    <div style="text-align: left;">
+      <h5> 猜測單字：{{ guess_word }}</h5>
+      <h5> 確定字母：{{ correct_word }}</h5><br>
+    </div>
+    {% endif %}
+
+    <table class="table  table-hover table-sm" style="width:80%;">
+      <thead class="thead-dark">
+        <th>候選字</th>
+      </thead>
+      <tbody>
+        {% for w in word %}
+        <tr>
+          <td>{{ w }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</body>
