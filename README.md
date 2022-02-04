@@ -20,9 +20,9 @@ A python project to help you solve the Wordle game.
 <img src="img/demo.png" width=300>
 
 #### 輸入規則
-- <p style="color: MediumSeaGreen;">綠色：o
-- <p style="color: LightSlateGrey;">灰色：x
-- <p style="color: Khaki;">黃色：?
+- <p style="color: MediumSeaGreen;">綠色：o</p>
+- <p style="color: LightSlateGrey;">灰色：x</p>
+- <p style="color: Khaki;">黃色：?</p>
 
 #### 範例 1
 - 輸入猜測單字: `puffy`
