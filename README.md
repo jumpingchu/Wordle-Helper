@@ -1,5 +1,11 @@
 # Wordle-Helper
-A python project to help you solve the Wordle game.
+A python web app to help you solve the Wordle game.
+
+## 使用工具＆框架
+- Python + Django
+- HTML + CSS + JS
+- PythonAnywhere （免費 Web app）
+- NLTK (自然語言處理包)
 
 ## 使用方法
 
@@ -20,9 +26,10 @@ A python project to help you solve the Wordle game.
 <img src="img/demo.png" width=300>
 
 #### 輸入規則
-- <p style="color: MediumSeaGreen;">綠色：o</p>
-- <p style="color: LightSlateGrey;">灰色：x</p>
-- <p style="color: Khaki;">黃色：?</p>
+
+- <span style="color: MediumSeaGreen;">綠色：o</span>
+- <span style="color: LightSlateGrey;">灰色：x</span>
+- <span style="color: Khaki;">黃色：?</span>
 
 #### 範例 1
 - 輸入猜測單字: `puffy`
