@@ -1,10 +1,10 @@
 from django.shortcuts import render
 
 def wordle_helper(request):
-    import nltk
+    # import nltk
     import random
     from nltk.corpus import words
-    nltk.download('words')
+    # nltk.download('words')
 
     def get_char_info(char_match: list):
       exclude_char = []
@@ -22,12 +22,9 @@ def wordle_helper(request):
     def get_correct_words(word_list, correct_char):
       if len(correct_char) > 0:
         candidate_words = []
-        for w in word_list:
-            try:
-              if all([w.index(c) == idx for c, idx in correct_char]):
-                candidate_words.append(w)
-            except:
-              continue
+        for word in word_list:
+            if all([(idx, c) in list(enumerate(word)) for c, idx in correct_char]):
+                candidate_words.append(word)
         return list(set(candidate_words))
       else:
         return word_list
@@ -68,8 +65,8 @@ def wordle_helper(request):
     word_list = list(set(word_list))
 
     if request.method == 'POST':
-        tried_list = request.POST.get('guess_word').lower()
-        result_list = request.POST.get('guess_result').lower()
+        tried_list = request.POST.get('guess_word').lower()    # 'until mount count'
+        result_list = request.POST.get('guess_result').lower() # 'oooxx ooooo ?????'
 
         if all([result != 'ooooo' for result in result_list.split(',')]):
             for tried, result in zip(tried_list.split(','), result_list.split(',')):
